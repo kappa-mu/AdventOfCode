@@ -12,13 +12,34 @@ namespace AdventOfCode
 
         public static int P1TreeCount ()
         {
+            return TreeCount(3, 1);
+        }
+
+
+        public static long P2TreeMultiplyCount()
+        {
+            long treeCount1 = TreeCount(1,1);
+            long treeCount2 = TreeCount(3,1);
+            long treeCount3 = TreeCount(5,1);
+            long treeCount4 = TreeCount(7,1);
+            long treeCount5 = TreeCount(1,2);
+
+            long result = treeCount1*treeCount2*treeCount3*treeCount4*treeCount5;
+            return result;
+        }
+
+        public static int TreeCount(int right, int down)
+        {
             int result = 0;
             List<string> treeList = rows.ToList();
+            int counter = 1;
+            int columnIndex = 0;
 
-            for(int i=1; i<treeList.Count(); i++)
+            for(int i = down; i < treeList.Count(); i += down)
             {
-                int columnIndex = i*3;
-                if(columnIndex  >= rows[i].Length)
+                columnIndex = counter*right;
+                counter++;
+                if(columnIndex  >= treeList[i].Length)
                 {
                     treeList[i] = AddToTheString(treeList[i], columnIndex);
                 }
@@ -29,7 +50,6 @@ namespace AdventOfCode
             }
             return result;
         }
-
         static string AddToTheString(string s, int count)
         {
             if(s.Length > count)

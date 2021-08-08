@@ -23,6 +23,9 @@ namespace AdventOfCode
             //Day3
             Console.WriteLine("Day 3 Part One - Tree Count: " + 
             D3TobogganTrajectory.P1TreeCount());
+
+            Console.WriteLine("Day 3 Part two - Tree Muliply Result: " + 
+            D3TobogganTrajectory.P2TreeMultiplyCount());
         }
     }
 }
