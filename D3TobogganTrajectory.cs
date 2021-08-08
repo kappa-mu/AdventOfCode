@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
-
+using System.Text;
+using System.Collections.Generic;
 
 namespace AdventOfCode
 {
@@ -12,15 +13,29 @@ namespace AdventOfCode
         public static int P1TreeCount ()
         {
             int result = 0;
+            List<string> treeList = rows.ToList();
 
-            for(int i=1; i<rows.Length; i++)
+            for(int i=1; i<treeList.Count(); i++)
             {
-                if(rows[i].Substring(i*3, 1) == "#")
+                int columnIndex = i*3;
+                if(columnIndex  >= rows[i].Length)
+                {
+                    treeList[i] = AddToTheString(treeList[i], columnIndex);
+                }
+                if(treeList[i].Substring(columnIndex, 1) == "#")
                 {
                     result++;
                 }
             }
             return result;
+        }
+
+        static string AddToTheString(string s, int count)
+        {
+            if(s.Length > count)
+                return s;
+            
+            return AddToTheString(s+s, count);           
         }
     }
 }
